@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.newItem {
+  margin-top: 20px;
+}
+
+.deleteItem {
+  cursor: pointer;
+}
+
+.items {
+  list-style-type: none;
+  margin: 0;
+  padding: 30px;
+}
+
+.item {
+  margin: 30px 0px;
+  border-bottom: 2px black dotted;
+}

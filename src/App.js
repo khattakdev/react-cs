@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import classes from "./App.module.css";
 
 function App() {
+  const [itemName, setItemName] = useState("");
+  const [items, setItems] = useState([]);
+
+  const addNewItem = () => {
+    const updatedItems = [...items];
+    updatedItems.push(itemName);
+    setItems(updatedItems);
+    setItemName("");
+  };
+
+  const onChangeItem = (e) => {
+    setItemName(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.App}>
+      <div className={classes.newItem}>
+        <input
+          value={itemName}
+          onChange={onChangeItem}
+          type="text"
+          placeholder="e.g. Cat Food"
+        />
+        <button onClick={addNewItem}>Add Todo</button>
+      </div>
+
+      <ul className={classes.items}>
+        {items.map((item, index) => (
+          <li key={index} className={classes.item}>
+            {item} <span className={classes.deleteItem}>❌</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
